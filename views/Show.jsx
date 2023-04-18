@@ -1,17 +1,19 @@
 const React = require('react');
-const pokemon = require('../models/pokemon');
+const Pokemon = require('../models/Pokemons');
 
 
-const Show = ({pokemon}) => {
-    console.log(pokemon);
-    return(
+function Show(props){
+    const {Pokemon} = props
+    console.log(Pokemon)
+        return(
         <div>
-            <h1>Gota Catch 'Em All!</h1>
-            <h2>{pokemon.name}</h2>
-            <img src={pokemon.img + '.jpg'} alt={pokemon.name}/>
-            <a href='/pokemon'>Back</a>
+            <h1>Gotta Catch 'Em All</h1>
+            <h2>{Pokemon.Name}</h2>
+            <img src={`${Pokemon.PokePic}.jpg`}/>
+            <br/>
+            <a href='/pokemon'>Go Back Home</a>
         </div>
     )
-}
+};
 
 module.exports = Show;

@@ -31,8 +31,8 @@ app.get('/', (req, res) => {
 
 // Index Route
 app.get('/pokemon', (req, res) => {
-    Pokemon.find({}, (error, foundPokemon) => {
-      res.render('Index', {Pokemon: foundPokemon});
+    Pokemon.find({}, (error, allPokemon) => {
+      res.render('Index', {Pokemon: allPokemon});
     })
     // Pokemon.find({}, (error, allPoke) => {
       // res.render('Index', {Pokemons: allPoke});
@@ -60,10 +60,10 @@ app.post('/pokemon', (req, res) => {
 
 // Show Route
 app.get("/pokemon/:id", (req, res) => {
-    // Pokemons.findById(req.params.id, (error, foundPoke) => {
-      res.render("Show", { pokemon: pokemon[req.params.id] });
+    Pokemon.findById(req.params.id, (error, foundPokemon) => {
+      res.render("Show", { Pokemon: foundPokemon });
     });
-  // });
+  });
 
 
 

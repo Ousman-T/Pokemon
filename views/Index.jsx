@@ -1,24 +1,23 @@
 const React = require('react');
-// const pokemon = require('../models/pokemon');
-const Pokemon = require('../models/Pokemons')
+const Pokemon = require('../models/Pokemons');
 
- const Index = ({Pokemon}) => {
+
+function Index(props){
+    const { Pokemon } = props;
+    console.log(Pokemon)
     return(
-        <div>
-            <h1>See All Pokemon</h1>
-            <ul>
-                {Pokemon.map((pokemon, id) => {
-                    return(
-                        
-                        <li key={pokemon.name}>
-                        <a href={`/pokemon/${id}`}>{pokemon.name}</a>
-                    </li>
-                        )
+        <>
+        <h1>Index of Pokemon</h1>
+        <ul>
+            {Pokemon.map((poke) => {
+                return(
+                    <li key={poke._id}>
+                    <a href={`/pokemon/${poke._id}`}>{poke.Name}</a></li>
+                )
 
-                })}
-            </ul>
-            
-        </div>
+            })}
+        </ul>
+        </>
     )
 }
 
