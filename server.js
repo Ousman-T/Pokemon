@@ -2,11 +2,10 @@ require('dotenv').config();
 const express = require('express')
 const app = express()
 const port = 3000
-const pokemon = require('./models/pokemon');
+// const pokemon = require('./models/pokemon');
 const React = require('react');
 const Pokemon = require('./models/Pokemons');
 const connectToDB = require('./config/db');
-// const bodyparser = require('bodyparser');
 
 //=============Configuring Engine
 app.set('view engine', 'jsx');
@@ -32,11 +31,32 @@ app.get('/', (req, res) => {
 
 // Index Route
 app.get('/pokemon', (req, res) => {
-    res.render('Index', {pokemon: pokemon});
+    Pokemon.find({}, (error, foundPokemon) => {
+      res.render('Index', {Pokemon: foundPokemon});
+    })
     // Pokemon.find({}, (error, allPoke) => {
       // res.render('Index', {Pokemons: allPoke});
     });
 // });
+
+/**
+ * New Route
+ */
+app.get('/pokemon/new', (req, res) => {
+  res.render('New');
+});
+
+/**
+ * POST method
+ */
+app.post('/pokemon', (req, res) => {
+  console.log(req.body);
+  Pokemon.create(req.body).then(Pokemon => {
+    res.redirect('/pokemon')
+  }).catch((error) => {
+    console.error(error)
+  })
+})
 
 // Show Route
 app.get("/pokemon/:id", (req, res) => {
