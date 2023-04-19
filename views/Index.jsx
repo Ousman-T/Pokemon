@@ -7,6 +7,9 @@ function Index(props){
     console.log(Pokemon)
     return(
         <>
+        <nav>
+            <a href='/pokemon/new'>Add Pokemon?</a>
+        </nav>
         <h1>Index of Pokemon</h1>
         <ul>
             {Pokemon.map((poke) => {
